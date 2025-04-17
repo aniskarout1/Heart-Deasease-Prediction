@@ -1,0 +1,69 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Disease Predictor</title>
+    <style>
+        body { font-family: Arial; background-color: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 50px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; }
+        button { padding: 10px 20px; background: #28a745; color: white; border: none; cursor: pointer; }
+        h2 { text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Heart Disease Prediction</h2>
+        <form action="/predict" method="post">
+            <input type="text" name="age" placeholder="Age" required>
+            <select name="sex">
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select>
+            <select name="cp">
+                <option value="0">Typical angina</option>
+                <option value="1">Atypical angina</option>
+                <option value="2">Non-anginal pain</option>
+                <option value="3">Asymptomatic</option>
+            </select>
+            <input type="text" name="trestbps" placeholder="Blood pressure" required>
+            <input type="text" name="chol" placeholder="Cholesterol" required>
+            <select name="fbs">
+                <option value="1">Fasting Blood Sugar > 120</option>
+                <option value="0">Fasting Blood Sugar <= 120</option>
+            </select>
+            <select name="restecg">
+                <option value="0">Normal</option>
+                <option value="1">ST-T wave abnormality</option>
+                <option value="2">LVH</option>
+            </select>
+            <input type="text" name="thalach" placeholder="Max heart rate" required>
+            <select name="exang">
+                <option value="1">Yes (Exercise-induced angina)</option>
+                <option value="0">No</option>
+            </select>
+            <input type="text" name="oldpeak" placeholder="Oldpeak" required>
+            <select name="slope">
+                <option value="0">Upsloping</option>
+                <option value="1">Flat</option>
+                <option value="2">Downsloping</option>
+            </select>
+            <select name="ca">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <select name="thal">
+                <option value="1">Normal</option>
+                <option value="2">Fixed defect</option>
+                <option value="3">Reversible defect</option>
+            </select>
+            <button type="submit">Predict</button>
+        </form>
+        {% if prediction_text %}
+            <h3 style="text-align: center; color: #333;">{{ prediction_text }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
