@@ -1,69 +1,267 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Heart Disease Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
-        body { font-family: Arial; background-color: #f4f4f4; margin: 0; padding: 0; }
-        .container { max-width: 600px; margin: 50px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
-        input, select { width: 100%; padding: 10px; margin: 10px 0; }
-        button { padding: 10px 20px; background: #28a745; color: white; border: none; cursor: pointer; }
-        h2 { text-align: center; }
+        body {
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            text-align: center;
+            font-family: cursive;
+            color:#333;
+            background: linear-gradient(to right, rgb(225, 165, 165), rgb(145, 145, 205));
+            margin: 10px;
+            margin-top: 20px;
+            border: 5px solid rgb(107, 203, 215);
+            border-radius: 20px;
+            max-width: 600px;
+            margin-left: 500px;
+        }
+        .container {
+            max-width: 700px;
+            background-color: #fbc3c3;
+            margin: 50px auto;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+            margin-left: 50px;
+            max-height: 1200px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            color: #333;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            color: white;
+            font-size: 14px;
+        }
+        .sex{
+            max-width: 200px;
+            margin-left: 270px;
+            /* position: relative; */
+        }
+        .s1{
+            margin:10px;
+            margin-left:-100px;
+            max-width: 500px;
+            /* position: relative; */
+        }
+        .sub-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px; /* space between text and dropdown */
+        margin-bottom: 20px;
+        }
+
+        .sub-container h2 {
+            margin: 0; /* remove extra margin */
+            font-size: 20px;
+        }
+
+        .sub-container select {
+            width: 150px; /* smaller width for dropdown */
+            padding: 8px;
+        }
+        .bar_graph{
+            margin:20px;
+            display:flex;
+            position: relative;
+            left: 1000px;
+            top:-800px;
+        }
+        .im{
+            margin: 20px;
+            display: flex;
+            position: relative;
+            left:850px;
+            top:-750px;
+        }
+        .pred{
+            margin:20px;
+            /* display:flex; */
+            position:relative;
+            top:-350px;
+        }
+        .cp{
+            max-width: 200px;
+            margin-left: 200px;
+            /* position: absolute;
+            left:535px; */
+        }
+        .s2{
+            margin:10px;
+            margin-left:-100px;
+            max-width: 500px;
+            /* margin:20px;
+            left:150px;
+            position: absolute; */
+        }
+        .ecg{
+            margin:20px;
+            margin-left: 150px;;
+        }
+        .s4{
+            max-width: 500px;
+        }
+        .thal{
+            margin:20px;
+            margin-left:150px;
+            max-width: 100px;
+        }
+        .slope{
+            margin:20px;
+            margin-left: 0px;
+            max-width: 150px;
+        }
+        .bv{
+            margin:20px;
+            margin-left:200px;
+            max-width: 200px;
+            margin-block: auto;
+        }
+        .thals{
+            margin:20px;
+            margin-left: 150px;
+            max-width: 100px;
+        }
+
     </style>
 </head>
 <body>
+    <h1>
+        ❤️ HEART DISEASE PREDICTIOR
+    </h1>
     <div class="container">
-        <h2>Heart Disease Prediction</h2>
+        <!-- <h2>❤️ Heart Disease Predictor</h2> -->
         <form action="/predict" method="post">
-            <input type="text" name="age" placeholder="Age" required>
-            <select name="sex">
-                <option value="1">Male</option>
-                <option value="0">Female</option>
-            </select>
-            <select name="cp">
-                <option value="0">Typical angina</option>
-                <option value="1">Atypical angina</option>
-                <option value="2">Non-anginal pain</option>
-                <option value="3">Asymptomatic</option>
-            </select>
-            <input type="text" name="trestbps" placeholder="Blood pressure" required>
-            <input type="text" name="chol" placeholder="Cholesterol" required>
+            <input type="text" name="age" placeholder="Enter your age" required>
+            <div class="sub-container">
+                <h2 class="s1">Choose your gender:</h2>
+                <select name="sex" class="sex">
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                </select>
+            </div>
+            <div class="sub-container">
+                <h2 class="s2">Choose your chest pain type:</h2>
+                <select name="cp" class="cp">
+                    <option value="0">Typical angina</option>
+                    <option value="1">Atypical angina</option>
+                    <option value="2">Non-anginal pain</option>
+                    <option value="3">Asymptomatic</option>
+                </select>
+            </div>
+            <input type="text" name="trestbps" placeholder="Resting Blood Pressure" required>
+            <input type="text" name="chol" placeholder="Cholesterol Level" required>
             <select name="fbs">
-                <option value="1">Fasting Blood Sugar > 120</option>
+                <option value="1">for Fasting Blood Sugar > 120</option>
                 <option value="0">Fasting Blood Sugar <= 120</option>
             </select>
-            <select name="restecg">
-                <option value="0">Normal</option>
-                <option value="1">ST-T wave abnormality</option>
-                <option value="2">LVH</option>
-            </select>
-            <input type="text" name="thalach" placeholder="Max heart rate" required>
-            <select name="exang">
-                <option value="1">Yes (Exercise-induced angina)</option>
-                <option value="0">No</option>
-            </select>
-            <input type="text" name="oldpeak" placeholder="Oldpeak" required>
-            <select name="slope">
-                <option value="0">Upsloping</option>
-                <option value="1">Flat</option>
-                <option value="2">Downsloping</option>
-            </select>
-            <select name="ca">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            <select name="thal">
-                <option value="1">Normal</option>
-                <option value="2">Fixed defect</option>
-                <option value="3">Reversible defect</option>
-            </select>
+            <div class="sub-container">
+                <h2 class="s3">Choose your electro cardio test:</h2>
+                <select name="restecg" class="ecg">
+                    <option value="0">Normal ECG</option>
+                    <option value="1">ST-T Wave Abnormality</option>
+                    <option value="2">Left Ventricular Hypertrophy</option>
+                </select>
+            </div>
+            <input type="text" name="thalach" placeholder="Max Heart Rate Achieved" required>
+            <div class="sub-container">
+                <h2 class="s4">Do you feel angenia during exercise ?</h2>
+                <select name="exang" class="thal">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <input type="text" name="oldpeak" placeholder="Oldpeak (ST Depression)" required>
+            <div class="sub-container">
+                <h2 class="s5">Choose your Slope of the ST segment during peak exercise:</h2>
+                <select name="slope" class="slope">
+                    <option value="0">Upsloping</option>
+                    <option value="1">Flat</option>
+                    <option value="2">Downsloping</option>
+                </select>
+            </div>
+            <div class="sub-container">
+                <h2 class="s6">Choose your major blood vessels:</h2>
+                <select name="ca" class="bv">
+                    <option value="0">0 major vessels</option>
+                    <option value="1">1 major vessel</option>
+                    <option value="2">2 major vessels</option>
+                    <option value="3">3 major vessels</option>
+                </select>
+            </div>
+            <div class="sub-container">
+                <h2 class="s7">Choose your thalassemia test result:</h2>
+                <select name="thal" class="thals">
+                    <option value="1">Normal</option>
+                    <option value="2">Fixed Defect</option>
+                    <option value="3">Reversible Defect</option>
+                </select>
+            </div>
             <button type="submit">Predict</button>
         </form>
+        <!-- <h3 style="text-align:center; margin-top: 40px;">Model Accuracy Comparison</h3>
+        <div style="text-align:center;">
+            <img src="{{ url_for('static', filename='model_accuracy_pie.png') }}" alt="Model Accuracy Pie Chart" width="400" height="400" style="border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+        </div> -->
+    <h3 style="text-align:center;" class="bar_graph">Model Accuracy Comparison</h3>
+    <div style="text-align:center;" class="im">
+        <img src="{{ url_for('static', filename='model_accuracy_bar.png') }}" alt="Model Accuracy Bar Chart" width="500" height="300" style="border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+    </div>
+
+    <div class="pred">
         {% if prediction_text %}
-            <h3 style="text-align: center; color: #333;">{{ prediction_text }}</h3>
+            <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+        {% if model_used %}
+            <div class="result" style="font-size: 16px; color: #666;">(Model used: {{ model_used }})</div>
         {% endif %}
     </div>
+
+    </div>
+    <footer>
+        Made with ❤️ for health prediction
+    </footer>
 </body>
 </html>
