@@ -4,9 +4,12 @@ import pickle
 
 app = Flask(__name__)
 
-# Load trained model
+# Load best model
 with open("heart_model.pkl", "rb") as f:
     model = pickle.load(f)
+
+with open("model_name.txt", "r") as f:
+    model_name = f.read()
 
 @app.route('/')
 def home():
@@ -32,13 +35,10 @@ def predict():
         ]
         arr = np.array(features).reshape(1, -1)
         prediction = model.predict(arr)
-        if prediction[0] == 0:
-            result = "You are healthy"
-        else:
-            result = "You should consult your doctor"
-        return render_template("index.html", prediction_text=result)
-    except:
-        return render_template("index.html", prediction_text="Invalid input. Please try again.")
+        result = "🟢 You are healthy!" if prediction[0] == 0 else "🔴 You should consult your doctor."
+        return render_template("index.html", prediction_text=result, model_used=model_name)
+    except Exception as e:
+        return render_template("index.html", prediction_text="⚠️ Invalid input. Please try again.", model_used="")
 
 if __name__ == "__main__":
     app.run(debug=True)
